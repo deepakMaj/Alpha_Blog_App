@@ -1,5 +1,5 @@
-//= require jquery_ujs
+//= require jquery_url
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap_sprockets
 //= require turbolinks
 //= require_tree .
