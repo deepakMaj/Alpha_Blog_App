@@ -8,10 +8,10 @@ gem 'rails', '~> 6.0.0'
 # Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-#bootstrap
-gem 'bootstrap-sass', '~> 3.4.1'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sass-rails', '~> 5'
+gem 'jquery-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -22,8 +22,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-# jquery for bootstrap
-gem 'jquery-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
