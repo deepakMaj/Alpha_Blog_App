@@ -42,8 +42,10 @@ $navbar-default-bg: black;
 }
 
 footer{
-  margin-top: 45px;
-  padding-top: 5px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   border-top: 1px solid #eaeaea;
   color: #777;
 }
@@ -63,7 +65,6 @@ footer ul{
 
 footer ul li{
   float: left;
-  margin-left: 15px;
 }
 
 .article-actions{
