@@ -1,5 +1,5 @@
 <h1 align="center" class="display-4 mt-4">Listing all Articles</h1>
 <%= render 'article', obj: @articles %>
-<div align="center">
-  <%= will_paginate %>
+<div class="d-flex justify-content-center">
+  <%= will_paginate @articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>

@@ -18,5 +18,7 @@
         </div>
     </ul>
   <% end %>
-  <%= will_paginate %>
+  <div class="d-flex justify-content-center">
+    <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
 </div>
