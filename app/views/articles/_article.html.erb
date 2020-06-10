@@ -1,7 +1,6 @@
 <% obj.each do |art| %>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <div class="well well-lg">
+  <div class="mt-4 d-flex justify-content-center">
+      <div class="card p-3 listing">
         <div class="article-title">
           <%= link_to art.title, article_path(art) %>
         </div>
@@ -19,12 +18,11 @@
       <% end %>
       <% if logged_in? && (current_user == art.user || current_user.admin? ) %>
         <div class="article-actions">
-          <%= link_to "Edit this article", edit_article_path(art), class: "btn btn-xs btn-primary" %>
+          <%= link_to "Edit this article", edit_article_path(art), class: "btn btn-sm btn-primary" %>
           <%= link_to "Delete this article", article_path(art) , method: :delete,
-              data: { confirm: "Are you sure to delete this article?" }, class:"btn btn-xs btn-danger"%>
+              data: { confirm: "Are you sure to delete this article?" }, class:"btn btn-sm btn-danger"%>
        </div>
       <% end %>
     </div>
-   </div>
   </div>
 <% end %>

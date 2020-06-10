@@ -5,7 +5,19 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 5)
+    if params[:search].blank?
+      @articles = Article.paginate(page: params[:page], per_page: 5)
+    else
+      @parameter = params[:search].downcase
+      @articles = Article.all.where("lower(title) LIKE :search", search: @parameter)
+                         .paginate(page: params[:page], per_page: 5)
+      if @articles.blank?
+        flash.now[:danger] = "There are no articles related with the search entry!"
+        @articles = Article.paginate(page: params[:page], per_page: 5)
+      else
+        @articles
+      end
+    end
   end
 
   def new
@@ -50,7 +62,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :description, category_ids:[])
+      params.require(:article).permit(:title, :description, :search, category_ids:[])
     end
 
     def set_article

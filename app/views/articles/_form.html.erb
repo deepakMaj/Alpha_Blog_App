@@ -1,40 +1,24 @@
 <%= render 'shared/errors', obj: @article %>
-<div class="row">
-  <div class="col-xs-12">
-    <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-    <div class="form-group">
-      <div class="control-label col-sm-2">
-        <%= f.label :title %>
-      </div>
-      <div class="col-sm-8">
-        <%= f.text_field :title, class: "form-control", placeholder: "Title of article", autofocus: true %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="control-label col-sm-2">
-        <%= f.label :description %>
-      </div>
-      <div class="col-sm-8">
-        <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Body of article" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-offset-2 col-sm-8">
-          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-            <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-5 col-sm-10">
-        <%= f.submit class: "btn btn-primary" %>
-      </div>
-    </div>
+<div class="mt-4 mb-4 container border border-dark rounded p-5">
+  <%= form_for(@article, :html => {role: "form"}) do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control", placeholder: "Title of article", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Body of article" %>
+  </div>
+  <div class="form-group">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: "form-check-label mr-2") {cb.check_box(class: "mr-1") + cb.text} %>
     <% end %>
-    <div class="col-xs col-xs-offset">
-      <%= link_to "Back to Articles List", articles_path %>
-    </div>
+  </div>
+  <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <% end %>
+  <div class="col-xs col-xs-offset">
+    <%= link_to "Back to Articles List", articles_path %>
   </div>
 </div>

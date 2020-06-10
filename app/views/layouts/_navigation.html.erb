@@ -1,65 +1,59 @@
-<nav class="navbar navbar-default">
-<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <!-- Brand and toggle get grouped for better mobile display -->
-<div class="navbar-header">
-  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
+  <%= link_to "Alpha Blog", root_path, class: "navbar-brand", id: "logo" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <%= link_to "Alhpa Blog", root_path, class: "navbar-brand", id: "logo" %>
-</div>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav">
-    <li><%= link_to "Articles", articles_path %></li>
-    <li><%= link_to "Users", users_path %></li>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="mr-auto navbar-nav">
+    <li class="nav-item"><%= link_to "Articles", articles_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
     <% if logged_in? %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><%= link_to "New Article", new_article_path %></li>
-          <li><a href="#">Help</a></li>
+          <li><%= link_to "New Article", new_article_path, class: "dropdown-item" %></li>
+          <li><a href="#" class="dropdown-item">Help</a></li>
         </ul>
       </li>
     <% end %>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><%= link_to "All Categories", categories_path %></li>
+        <li><%= link_to "All Categories", categories_path, class: "dropdown-item" %></li>
         <% Category.all.each do |category| %>
-          <li><%= link_to "#{category.name}", category_path(category) %></li>
+          <li><%= link_to "#{category.name}", category_path(category), class: "dropdown-item" %></li>
         <% end %>
         <% if logged_in? && current_user.admin? %>
           <li role="separator" class="divider"></li>
-          <li><%= link_to "Create new Category", new_category_path %></li>
+          <li><%= link_to "Create new Category", new_category_path, class: "dropdown-item" %></li>
         <% end %>
       </ul>
     </li>
+    <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
   </ul>
-  <form class="navbar-form navbar-left">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-  <ul class="nav navbar-nav navbar-right">
+  <ul class="ml-auto navbar-nav">
+    <%= form_tag(articles_path, method: :get, class: "form-inline my-2 my-lg-0") do %>
+      <%= text_field_tag(:search, params[:search], class: "form-control mr-sm-2", placeholder: "Search with title") %>
+      <%= submit_tag("Search", class: "btn btn-outline-primary my-2 my-sm-0 mr-2") %>
+    <% end %>
     <% if logged_in? %>
-      <li><%= link_to "Logout", logout_path, method: :delete %></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<%= " Admin" if current_user.admin? %><span class="caret"></span></a>
+      <li class="nav-item dropdown mr-2">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <strong><%= "Admin" if current_user.admin? %></strong><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><%= link_to "Edit your profile", edit_user_path(current_user) %></li>
-          <li><%= link_to "View your profile", user_path(current_user) %></li>
+          <li><%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %></li>
+          <li><%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %></li>
         </ul>
       </li>
+      <li><%= link_to "Logout", logout_path, method: :delete, class: "btn btn-outline-danger my-2 my-sm-0" %></li>
     <% else %>
-      <li><%= link_to "Login", login_path %></li>
-      <li><%= link_to "Sign Up", signup_path %></li>
+    <div style="display: flex;">
+      <li class="nav-item"><%= link_to "Sign In", login_path, class: "btn btn-outline-success my-2 my-sm-0 mr-2" %></li>
+      <li class="nav-item"><%= link_to "Sign Up", signup_path, class: "btn btn-outline-danger my-2 my-sm-0" %></li>
+    </div>
     <% end %>
   </ul>
 </div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
 </nav>

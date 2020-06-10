@@ -1,5 +1,5 @@
-<h1 align="center" class="weight"><%= "Category: " + @category.name %></h1>
-<div align="center">
+<h1 align="center" class="display-4 mt-4"><%= "Category: " + @category.name %></h1>
+<div align="center" class="container mt-4">
   <% if logged_in? and current_user.admin? %>
   <div class="row">
     <span class="badge">
@@ -10,6 +10,6 @@
 </div>
 <hr>
 <%= render 'articles/article', obj: @category_articles %>
-<div align="center">
-  <%= will_paginate @category_articles %>
+<div class="d-flex justify-content-center">
+  <%= will_paginate @category_articles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
