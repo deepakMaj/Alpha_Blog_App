@@ -1,11 +1,11 @@
 <h1 align="center" class="display-4 mt-4">Alpha Bloggers</h1>
 <div class="container">
   <% @users.each do |user| %>
-    <ul class="listing card mt-5 p-3 bg-gray mx-auto" style="width: 40rem;">
-        <div class="mt-2 mb-2 row justify-content-md-center">
-          <div class="col col-md-auto">
+    <ul class="listing card mt-5 p-3 bg-gray mx-auto">
+        <div class="mt-2 mb-2 row justify-content-center">
+          <div class="col" align="center">
             <li><%= link_to gravatar_for(user), user_path(user) %></li>
-            <li class="article-title">
+            <li class="article-title" align="center">
               <%= link_to user.username, user_path(user)%>
             </li>
             <li class="mb-1 font-weight-normal" align="center"><%= pluralize(user.articles.count, "article") if user.articles %></li>
